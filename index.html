@@ -17,11 +17,30 @@
 
 <body>
     <div id="container">
-            <header>
-                <h1>Bobe<span>Tube</span></h1>
-                <p>Search Youtube without all the nonesense</p>
-            </header>
+        <header>
+            <h1>Bobe<span>Tube</span></h1>
+            <p>Search Youtube without all the nonesense</p>
+        </header>
+        <section>
+            <form id="search-form" name="search-form" onsubmit="return search()">
+                <div class="fieldContainer">
+                    <input type="search" id="query" class="search-field" placeholder="Search BobeTube">
+                    <input type="submit" name="search-btn" id="search-btn" value="">
+                </div>
+            </form>
+
+            <ul id="results"></ul>
+            <div id="buttons"></div>
+        </section>
+        <footer>
+            <p>Copyright Bobe Enterprises &copy; 2022, All Rights Reserved</p>
+        </footer>
     </div>
 </body>
 
 </html>
+
+
+<!-- 
+youtube API key
+AIzaSyBZg-PVM63bSB6db3WQGx97gVbHswfZSeo -->
