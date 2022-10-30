@@ -30,7 +30,7 @@ $(function () {
     });
 })
 
-//search function
+//search function - 
 function search() {
     //clear results
     $('#results').html('');
@@ -55,11 +55,39 @@ function search() {
 
             $.each(data.items, function(i, item){
                 //get output from response
-                var output = getOutput(item);
+                var formattedResponse = formatResponse(item);
 
                 //display results
-                $('#results').append(output);
+                $('#results').append(formattedResponse);
             });
         }
     );
+}
+
+//format response
+function formatResponse(item){
+    //gather properties
+    var videoId = item.id.videoId;
+    var title = item.snippet.title;
+    var description = item.snippet.description;
+    var thumbnail = item.snippet.thumbnails.high.url
+    var channelTitle = item.snippet.channelTitle;
+    var videoDate = item.snippet.publishTime;
+
+    //build response
+    var formattedResponse = '<li>' +
+    '<div class="list-left">' +
+    '<img src="' + thumbnail + '">' +
+    '</div>' +
+    '<div class=list-right>' +
+    '<h3>' + title + '</h3>' +
+    '<small>By <span class="cTitle">' + channelTitle + '</span >on ' + videoDate +'</small>' +
+    '<p>' + description + '</p>'
+    '</div>' +
+    '</li>' +
+    '<div class="clearfix"></div>' +
+    '';
+
+    return formattedResponse;
+
 }
