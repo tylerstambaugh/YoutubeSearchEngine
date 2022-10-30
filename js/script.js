@@ -1,9 +1,9 @@
-// searchbar handler
+// searchbar handlers
 $(function () {
     var searchField = $('#query');
     var icon = $('#search-btn');
 
-    //focus event handler
+    //focus event handler (what happens when you click into search)
     $(searchField).on('focus', function () {
         $(this).animate({
             width: '100%'
@@ -25,6 +25,7 @@ $(function () {
         }
     });
 
+    //prevent page from reloading
     $('#search-form').submit(function (e) {
         e.preventDefault();
     });
@@ -51,21 +52,27 @@ function search() {
             var nextPageToken = data.nextPageToken;
             var prevPageToken = data.prevPageToken;
 
-            //console.log(data);
+            console.log(data);
 
-            $.each(data.items, function(i, item){
+            $.each(data.items, function (i, item) {
                 //get output from response
                 var formattedResponse = formatResponse(item);
 
                 //display results
                 $('#results').append(formattedResponse);
             });
+
+            var formattedButtons = formatButtons(prevPageToken, nextPageToken);
+            //display buttons
+
+            $('#buttons').append(formattedButtons);
+
         }
     );
 }
 
-//format response
-function formatResponse(item){
+//format response content
+function formatResponse(item) {
     //gather properties
     var videoId = item.id.videoId;
     var title = item.snippet.title;
@@ -76,18 +83,40 @@ function formatResponse(item){
 
     //build response
     var formattedResponse = '<li>' +
-    '<div class="list-left">' +
-    '<img src="' + thumbnail + '">' +
+        '<div class="list-left">' +
+        '<img src="' + thumbnail + '">' +
+        '</div>' +
+        '<div class=list-right>' +
+        '<h3>' + title + '</h3>' +
+        '<small>By <span class="cTitle">' + channelTitle + '</span > on ' + videoDate + '</small>' +
+        '<p>' + description + '</p>'
     '</div>' +
-    '<div class=list-right>' +
-    '<h3>' + title + '</h3>' +
-    '<small>By <span class="cTitle">' + channelTitle + '</span >on ' + videoDate +'</small>' +
-    '<p>' + description + '</p>'
-    '</div>' +
-    '</li>' +
-    '<div class="clearfix"></div>' +
-    '';
+        '</li>' +
+        '<div class="clearfix"></div>' +
+        '';
 
     return formattedResponse;
 
 }
+
+
+//format the buttons
+function formatButtons(prevPageToken, nextPageToken){
+    if(!nextPageToken){
+        var formattedButtons = '<div class="buttonContainer>' +
+        '<button id="next-button" class+"paging-button" data-token="' + nextPageToken + 
+        '" data-query="' + q +
+        'onclick="nextPage();">Next Page</button></div>';
+    } else {
+        var formattedButtons = '<div class="buttonContainer>' +
+        '<button id="prev-button" class+"paging-button" data-token="' + prevPageToken + 
+        '" data-query="' + q +
+        'onclick="prevPage();">Previous Page</button>' +
+        '<button id="next-button" class+"paging-button" data-token="' + nextPageToken + 
+        '" data-query="' + q +
+        'onclick="nextPage();">Next Page</button></div>';
+    }
+
+    return formatButtons;
+}
+
