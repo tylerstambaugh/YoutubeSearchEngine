@@ -1,3 +1,13 @@
+jQuery.browser = {};
+(function () {
+    jQuery.browser.msie = false;
+    jQuery.browser.version = 0;
+    if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+        jQuery.browser.msie = true;
+        jQuery.browser.version = RegExp.$1;
+    }
+})();
+
 // searchbar handlers
 $(function () {
     var searchField = $('#query');
@@ -169,12 +179,12 @@ function formatResponse(item) {
     //build response
     var formattedResponse = '<li>' +
         '<div class="list-left">' +
-        '<img src="' + thumbnail + '">' +
+        '<a data-fancybox="video-gallery" href="http://www.youtube.com/watch?v='+videoId+'&amp;autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0"><img src="'+thumbnail+'"></a>' +
         '</div>' +
         '<div class=list-right>' +
-        '<h3>' + title + '</h3>' +
-        '<small>By <span class="cTitle">' + channelTitle + '</span > on ' + videoDate + '</small>' +
-        '<p>' + description + '</p>'
+        '<h3><a data-fancybox="video-gallery" href="http://www.youtube.com/watch?v='+videoId+'&amp;autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0">'+title+'</a></h3>' +
+        '<small>By <span class="cTitle">'+channelTitle+'</span > on '+videoDate+'</small>' +
+        '<p>'+description+'</p>'
     '</div>' +
         '</li>' +
         '<div class="clearfix"></div>' +
