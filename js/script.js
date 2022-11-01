@@ -169,7 +169,7 @@ function formatResponse(item) {
     //build response
     var formattedResponse = '<li>' +
         '<div class="list-left">' +
-        '<a class="fancybox fancybox.iframe" href="http://www.youtube.com/embed/'+videoId+'&amp;autoplay=0&amp;rel=0&amp;controls=0&amp;showinfo=0"><img src="'+thumbnail+'"></a>' +
+        '<a data-fancybox href="http://www.youtube.com/embed/'+videoId+'&amp;autoplay=0&amp;rel=0&amp;controls=0&amp;showinfo=0"><img src="'+thumbnail+'"></a>' +
         '</div>' +
         '<div class=list-right>' +
         '<h3><a data-fancybox href="http://www.youtube.com/embed/'+videoId+'&amp;autoplay=0&amp;rel=0&amp;controls=0&amp;showinfo=0">'+title+'</a></h3>' +
