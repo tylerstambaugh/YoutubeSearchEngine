@@ -169,10 +169,10 @@ function formatResponse(item) {
     //build response
     var formattedResponse = '<li>' +
         '<div class="list-left">' +
-        '<a data-fancybox="video-gallery" href="http://www.youtube.com/watch?v='+videoId+'&amp;autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0"><img src="'+thumbnail+'"></a>' +
+        '<a class="fancybox fancybox.iframe" href="http://www.youtube.com/embed/'+videoId+'&amp;autoplay=0&amp;rel=0&amp;controls=0&amp;showinfo=0"><img src="'+thumbnail+'"></a>' +
         '</div>' +
         '<div class=list-right>' +
-        '<h3><a data-fancybox="video-gallery" href="http://www.youtube.com/watch?v='+videoId+'&amp;autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0">'+title+'</a></h3>' +
+        '<h3><a data-fancybox href="http://www.youtube.com/embed/'+videoId+'&amp;autoplay=0&amp;rel=0&amp;controls=0&amp;showinfo=0">'+title+'</a></h3>' +
         '<small>By <span class="cTitle">'+channelTitle+'</span > on '+videoDate+'</small>' +
         '<p>'+description+'</p>'
     '</div>' +
